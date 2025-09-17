@@ -33,7 +33,7 @@ class CheckSettingsProvider extends ServiceProvider
                 'phone_number' => null,
                 'country' => null,
                 'city' => null,
-                'street' => null,
+                'street' => 'Mohamed V, Agadir, Morocco',
             ]);
         });
     }

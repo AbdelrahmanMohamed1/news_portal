@@ -19,7 +19,6 @@ class ImageFactory extends Factory
     {
         return [
             'path' => 'https://picsum.photos/seed/' . $this->faker->unique()->md5 . '/800/600',
-            'here'=> Post::factory(),
         ];
     }
 }

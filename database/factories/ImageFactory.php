@@ -18,7 +18,8 @@ class ImageFactory extends Factory
     public function definition(): array
     {
         return [
-            'path' => $this->faker->imageUrl(),
+            'path' => 'https://picsum.photos/seed/' . $this->faker->unique()->md5 . '/800/600',
+            'here'=> Post::factory(),
         ];
     }
 }

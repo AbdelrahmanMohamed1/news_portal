@@ -18,6 +18,7 @@ return new class extends Migration
             $table->longText('content');
             $table->boolean('comment_able')->default(true);
             $table->boolean('status')->default(true);
+            $table->unsignedBigInteger('clicked')->default(0);
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->timestamps();

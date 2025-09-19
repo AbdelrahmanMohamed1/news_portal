@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\PostController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[HomeController::class,'index'])->name('frontend.index');
+
+Route::get('/post/{slug}',[PostController::class,'show'])->name('frontend.show');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

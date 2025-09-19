@@ -18,6 +18,7 @@ class CategorySeeder extends Seeder
             'Technology Category',
             'Health Category',
             'Sports Category',
+            'Business Category',
         ];
         foreach($data as $item){
             Category::create([

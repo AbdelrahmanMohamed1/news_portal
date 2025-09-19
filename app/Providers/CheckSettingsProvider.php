@@ -36,5 +36,6 @@ class CheckSettingsProvider extends ServiceProvider
                 'street' => 'Mohamed V, Agadir, Morocco',
             ]);
         });
+        
     }
 }

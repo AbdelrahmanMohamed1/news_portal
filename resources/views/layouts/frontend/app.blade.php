@@ -13,6 +13,15 @@
       name="description"
     />
 
+    <!-- Performance: DNS Prefetch & Preconnect -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="//code.jquery.com" />
+    <link rel="dns-prefetch" href="//stackpath.bootstrapcdn.com" />
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
+
     <!-- Favicon -->
     <link href="{{ asset("assets/img/") }}/favicon.ico" rel="icon" />
 
@@ -36,6 +45,32 @@
 
     <!-- Template Stylesheet -->
     <link href="{{ asset("assets/css/style.css") }}" rel="stylesheet" />
+
+    <!-- Default lazy loading for images -->
+    <script>
+      (function () {
+        function setImgDefaults(img) {
+          if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
+          if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
+        }
+        var imgs = document.getElementsByTagName('img');
+        for (var i = 0; i < imgs.length; i++) setImgDefaults(imgs[i]);
+        var obs = new MutationObserver(function (mutations) {
+          for (var m = 0; m < mutations.length; m++) {
+            var added = mutations[m].addedNodes;
+            for (var a = 0; a < added.length; a++) {
+              var node = added[a];
+              if (node && node.tagName === 'IMG') setImgDefaults(node);
+              if (node && node.querySelectorAll) {
+                var nested = node.querySelectorAll('img');
+                for (var n = 0; n < nested.length; n++) setImgDefaults(nested[n]);
+              }
+            }
+          }
+        });
+        obs.observe(document.documentElement, { childList: true, subtree: true });
+      })();
+    </script>
   </head>
 
   <body>
@@ -50,12 +85,12 @@
     <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
     <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset("assets") }}/lib/easing/easing.min.js"></script>
-    <script src="{{ asset("assets") }}/lib/slick/slick.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" defer></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" defer></script>
+    <script src="{{ asset("assets") }}/lib/easing/easing.min.js" defer></script>
+    <script src="{{ asset("assets") }}/lib/slick/slick.min.js" defer></script>
 
     <!-- Template Javascript -->
-    <script src="{{ asset("assets/js/main.js") }}"></script>
+    <script src="{{ asset("assets/js/main.js") }}" defer></script>
   </body>
 </html>

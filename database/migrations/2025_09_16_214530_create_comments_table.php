@@ -18,7 +18,6 @@ return new class extends Migration
             $table->boolean('status')->default(true);
             $table->foreignId('post_id')->constrained('posts')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            
             $table->timestamps();
         });
     }

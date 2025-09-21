@@ -31,6 +31,8 @@ Route::group(
         Route::get('/post/{slug}', [PostController::class, 'show'])->name('show');
         Route::get('/post/id/{id}', [PostController::class, 'showById'])->name('showById');
         Route::get('/category/{slug}', [CategoryController::class, 'index'])->name('category');
+        Route::get('/post/show-more-comments/{slug}', [PostController::class, 'showMoreComments'])->name('show-more-comments');
+        Route::post('/post/add-comment', [PostController::class, 'addComment'])->name('add-comment');
     }
 );
 

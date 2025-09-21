@@ -17,7 +17,7 @@
             <div class="tn-img">
               <img src="{{ $post->images->first()->path }}" />
               <div class="tn-title">
-                <a href="">{{ $post->title }}</a>
+                <a href="{{ route('frontend.show',['slug'=>$post->slug]) }}" target="_blank">{{ $post->title }}</a>
               </div>
             </div>
           </div>
@@ -33,14 +33,14 @@
         <div class="row">
 
 
-        @foreach ($category_posts as $key=>$postts )
+          @foreach ($category_posts as $key=>$postts )
           @if ($key=="Sports Category")
           @foreach ($postts->posts as $post )
           <div class="col-md-6">
             <div class="tn-img">
               <img src="{{ $post->images->first()->path }}" />
               <div class="cn-title">
-                <a href="">{{ $post->title }}</a>
+                <a href="{{ route('frontend.show',['slug'=>$post->slug]) }}" target="_blank">{{ $post->title }}</a>
               </div>
             </div>
           </div>
@@ -54,7 +54,7 @@
             <div class="tn-img">
               <img src="{{ $post->images->first()->path }}" />
               <div class="cn-title">
-                <a href="">{{ $post->title }}</a>
+                <a href="{{ route('frontend.show',['slug'=>$post->slug]) }}" target="_blank">{{ $post->title }}</a>
               </div>
             </div>
           </div>
@@ -68,7 +68,7 @@
             <div class="tn-img">
               <img src="{{ $post->images->first()->path }}" />
               <div class="cn-title">
-                <a href="">{{ $post->title }}</a>
+                <a href="{{ route('frontend.show',['slug'=>$post->slug]) }}" target="_blank">{{ $post->title }}</a>
               </div>
             </div>
           </div>
@@ -82,7 +82,7 @@
             <div class="tn-img">
               <img src="{{ $post->images->first()->path }}" />
               <div class="cn-title">
-                <a href="">{{ $post->title }}</a>
+                <a href="{{ route('frontend.show',['slug'=>$post->slug]) }}" target="_blank">{{ $post->title }}</a>
               </div>
             </div>
           </div>
@@ -91,8 +91,8 @@
           @endif
           @endforeach
 
-          
-          
+
+
         </div>
       </div>
 
@@ -120,7 +120,7 @@
             <div class="cn-img">
               <img src="{{ $post->images->first()->path }}" />
               <div class="cn-title">
-                <a href="">{{ $post->title }}</a>
+                <a href="{{ route('frontend.show',['slug'=>$post->slug]) }}" target="_blank">{{ $post->title }}</a>
               </div>
             </div>
           </div>
@@ -140,7 +140,7 @@
             <div class="cn-img">
               <img src="{{ $post->images->first()->path }}" />
               <div class="cn-title">
-                <a href="">{{ $post->title }}</a>
+                <a href="{{ route('frontend.show',['slug'=>$post->slug]) }}" target="_blank">{{ $post->title }}</a>
               </div>
             </div>
           </div>
@@ -167,7 +167,7 @@
               <div class="cn-img">
                 <img src="{{ $post->images->first()->path }}" />
                 <div class="cn-title">
-                  <a href="">{{ $post->title }}</a>
+                  <a href="{{ route('frontend.show',['slug'=>$post->slug]) }}" target="_blank">{{ $post->title }}</a>
                 </div>
               </div>
             </div>
@@ -186,7 +186,7 @@
               <div class="cn-img">
                 <img src="{{ $post->images->first()->path }}" />
                 <div class="cn-title">
-                  <a href="">{{ $post->title }}</a>
+                  <a href="{{ route('frontend.show',['slug'=>$post->slug]) }}" target="_blank">{{ $post->title }}</a>
                 </div>
               </div>
             </div>
@@ -213,7 +213,6 @@
             <li class="nav-item">
               <a class="nav-link" data-toggle="pill" href="#popular">Popular News</a>
             </li>
-
           </ul>
 
           <div class="tab-content">
@@ -225,7 +224,7 @@
                   <img src="{{ $post->images->first()->path }}" />
                 </div>
                 <div class="tn-title">
-                  <a href="">{{ $post->title }}</a>
+                  <a href="{{ route('frontend.show',['slug'=>$post->slug]) }}" target="_blank">{{ $post->title }}</a>
                 </div>
               </div>
               @endforeach
@@ -241,11 +240,10 @@
                   <img src="{{ $post->images->first()->path }}" />
                 </div>
                 <div class="tn-title">
-                  <a href="">{{ $post->title }}({{ $post->comments->count() }})</a>
+                  <a href="{{ route('frontend.show',['slug'=>$post->slug]) }}" target="_blank">{{ $post->title }}({{ $post->comments->count() }})</a>
                 </div>
               </div>
               @endforeach
-
             </div>
 
           </div>
@@ -259,7 +257,6 @@
             <li class="nav-item">
               <a class="nav-link" data-toggle="pill" href="#m-read">Most Read</a>
             </li>
-
           </ul>
 
           @php
@@ -280,7 +277,7 @@
                   <img src="{{ $post->images->first()->path }}" />
                 </div>
                 <div class="tn-title">
-                  <a href="">{{ $post->title }}</a>
+                  <a href="{{ route('frontend.show',['slug'=>$post->slug]) }}" target="_blank">{{ $post->title }}</a>
                 </div>
               </div>
               @endforeach
@@ -295,7 +292,7 @@
                   <img src="{{ $post->images->first()->path }}" />
                 </div>
                 <div class="tn-title">
-                  <a href="">{{ $post->title }}({{ $post->clicked }})</a>
+                  <a href="{{ route('frontend.show',['slug'=>$post->slug]) }}" target="_blank">{{ $post->title }}({{ $post->clicked }})</a>
                 </div>
               </div>
               @endforeach
@@ -334,20 +331,9 @@
           <div class="mn-list">
             <h2>Read More</h2>
             <ul>
-              <li><a href="">Lorem ipsum dolor sit amet</a></li>
-              <li><a href="">Pellentesque tincidunt enim libero</a></li>
-              <li><a href="">Morbi id finibus diam vel pretium enim</a></li>
-              <li>
-                <a href="">Duis semper sapien in eros euismod sodales</a>
-              </li>
-              <li><a href="">Vestibulum cursus lorem nibh</a></li>
-              <li>
-                <a href="">Morbi ullamcorper vulputate metus non eleifend</a>
-              </li>
-              <li><a href="">Etiam vitae elit felis sit amet</a></li>
-              <li><a href="">Nullam congue massa vitae quam</a></li>
-              <li><a href="">Proin sed ante rutrum</a></li>
-              <li><a href="">Curabitur vel lectus</a></li>
+              @foreach ($read_more_posts as $post )
+              <li><a href="{{ route('frontend.showById',['id'=>$post->id]) }}" target="_blank">{{ $post->title }}</a></li>
+              @endforeach
             </ul>
           </div>
         </div>

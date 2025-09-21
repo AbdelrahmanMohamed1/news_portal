@@ -4,8 +4,8 @@
         <div class="row">
           <div class="col-md-6">
             <div class="tb-contact">
-              <p><i class="fas fa-envelope"></i>info@mail.com</p>
-              <p><i class="fas fa-phone-alt"></i>+012 345 6789</p>
+              <p><i class="fas fa-envelope"></i>{{ $get_settings->contact_email }}</p>
+              <p><i class="fas fa-phone-alt"></i>{{ $get_settings->phone_number }}</p>
             </div>
           </div>
           <div class="col-md-6">
@@ -34,9 +34,7 @@
           </div>
           <div class="col-lg-6 col-md-4">
             <div class="b-ads">
-              <a href="https://htmlcodex.com">
-                <img src="{{ asset("assets/img") }}/ads-1.jpg" alt="Ads" />
-              </a>
+              
             </div>
           </div>
           <div class="col-lg-3 col-md-4">
@@ -69,31 +67,31 @@
             id="navbarCollapse"
           >
             <div class="navbar-nav mr-auto">
-              <a href="index.html" class="nav-item nav-link active">Home</a>
+              <a href="index.html" class="nav-item nav-link {{ request()->routeIs('frontend.index') ? 'active' : '' }} ">Home</a>
               <div class="nav-item dropdown">
                 <a
                   href="#"
-                  class="nav-link dropdown-toggle"
+                  class="nav-link dropdown-toggle {{ request()->routeIs('frontend.category') ? 'active' : '' }}"
                   data-toggle="dropdown"
-                  >Dropdown</a
+                  >Categories</a
                 >
                 <div class="dropdown-menu">
-                  <a href="#" class="dropdown-item">Sub Item 1</a>
-                  <a href="#" class="dropdown-item">Sub Item 2</a>
+                  @foreach ($categories as $category)
+                  <a href="{{ route('frontend.category',['slug'=>$category->slug]) }}" title="{{ $category->name }}" class="dropdown-item">{{ $category->name }}</a>
+                  @endforeach
+                 
                 </div>
               </div>
-              <a href="single-page.html" class="nav-item nav-link"
+              <a href="single-page.html" class="nav-item nav-link {{ request()->routeIs('frontend.show') ? 'active' : '' }}"
                 >Single Page</a
               >
               <a href="dashboard.html" class="nav-item nav-link">Dashboard</a>
               <a href="contact.html" class="nav-item nav-link">Contact Us</a>
             </div>
             <div class="social ml-auto">
-              <a href=""><i class="fab fa-twitter"></i></a>
-              <a href=""><i class="fab fa-facebook-f"></i></a>
-              <a href=""><i class="fab fa-linkedin-in"></i></a>
-              <a href=""><i class="fab fa-instagram"></i></a>
-              <a href=""><i class="fab fa-youtube"></i></a>
+              <a href="{{ $get_settings->twitter_url }}" title="twitter"><i class="fab fa-twitter"></i></a>
+              <a href="{{ $get_settings->facebook_url }}" title="facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="{{ $get_settings->instagram_url }}" title="instgram"><i class="fab fa-instagram"></i></a>
             </div>
           </div>
         </nav>

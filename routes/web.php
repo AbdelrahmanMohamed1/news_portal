@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Frontend\CategoryController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\NewLetterController;
 use App\Http\Controllers\Frontend\PostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -16,9 +18,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[HomeController::class,'index'])->name('frontend.index');
 
-Route::get('/post/{slug}',[PostController::class,'show'])->name('frontend.show');
+
+
+Route::group(
+    [
+        'as' => 'frontend.'
+    ],
+    function () {
+        Route::post('/newsletter/subscribe', [NewLetterController::class, 'subscribe'])->name('newsletter.subscribe');
+        Route::get('/', [HomeController::class, 'index'])->name('index');
+        Route::get('/post/{slug}', [PostController::class, 'show'])->name('show');
+        Route::get('/post/id/{id}', [PostController::class, 'showById'])->name('showById');
+        Route::get('/category/{slug}', [CategoryController::class, 'index'])->name('category');
+    }
+);
 
 Auth::routes();
 

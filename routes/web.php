@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\Frontend\CategoryController;
+use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\NewLetterController;
 use App\Http\Controllers\Frontend\PostController;
+use App\Http\Controllers\Frontend\SearchController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -30,9 +32,12 @@ Route::group(
         Route::get('/', [HomeController::class, 'index'])->name('index');
         Route::get('/post/{slug}', [PostController::class, 'show'])->name('show');
         Route::get('/post/id/{id}', [PostController::class, 'showById'])->name('showById');
+        Route::post('/post/add-comment', [PostController::class, 'addComment'])->name('add-comment');
         Route::get('/category/{slug}', [CategoryController::class, 'index'])->name('category');
         Route::get('/post/show-more-comments/{slug}', [PostController::class, 'showMoreComments'])->name('show-more-comments');
-        Route::post('/post/add-comment', [PostController::class, 'addComment'])->name('add-comment');
+        Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+        Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
+        Route::match(['get','post'],'search',[SearchController::class,'__invoke'])->name('search');
     }
 );
 

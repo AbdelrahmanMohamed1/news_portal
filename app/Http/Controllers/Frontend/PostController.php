@@ -13,14 +13,14 @@ class PostController extends Controller
 {
     public function show($slug)
     {
-        $post = Post::where('slug', $slug)->firstOrFail();
-        $mainPost = Post::where('slug', $slug)->firstOrFail();
-        $posts = Post::with('images')->latest()->take(3)->get();
+        $post = Post::active()->where('slug', $slug)->firstOrFail();
+        $mainPost = Post::active()->where('slug', $slug)->firstOrFail();
+        $posts = Post::active()->with('images')->latest()->take(3)->get();
         $post->increment('clicked');
         $post_with_images = $post->load('images');
-        $catogory_posts = Post::where('category_id', $post->category_id)->latest()->take(5)->get();
-        $latest_three_posts=Post::where('category_id', $post->category_id)->latest()->take(3)->get();
-        $popular_three_posts=Post::withCount('comments')->where('category_id', $post->category_id)->orderBy('comments_count','desc')->take(3)->get();
+        $catogory_posts = Post::active()->where('category_id', $post->category_id)->latest()->take(5)->get();
+        $latest_three_posts=Post::active()->where('category_id', $post->category_id)->latest()->take(3)->get();
+        $popular_three_posts=Post::active()->withCount('comments')->where('category_id', $post->category_id)->orderBy('comments_count','desc')->take(3)->get();
         $categories_with_posts_count=Category::withCount('posts')->orderBy('posts_count','desc')->get();
         $comments_for_post=Comment::where('post_id',$post->id)->latest()->take(3)->get();
         $comments = Comment::with('user')->where('user_id',$post->user_id)->take(5)->get();
@@ -30,14 +30,14 @@ class PostController extends Controller
     }
     public function showById($id)
     {
-        $post = Post::findOrFail($id);
-        $mainPost = Post::findOrFail($id);
-        $posts = Post::with('images')->latest()->take(3)->get();
+        $post = Post::active()->findOrFail($id);
+        $mainPost = Post::active()->findOrFail($id);
+        $posts = Post::active()->with('images')->latest()->take(3)->get();
         $post->increment('clicked');
         $post_with_images = $post->load('images');
-        $catogory_posts = Post::where('category_id', $post->category_id)->latest()->take(5)->get();
-        $latest_three_posts=Post::where('category_id', $post->category_id)->latest()->take(3)->get();
-        $popular_three_posts=Post::withCount('comments')->where('category_id', $post->category_id)->orderBy('comments_count','desc')->take(3)->get();
+        $catogory_posts = Post::active()->where('category_id', $post->category_id)->latest()->take(5)->get();
+        $latest_three_posts=Post::active()->where('category_id', $post->category_id)->latest()->take(3)->get();
+        $popular_three_posts=Post::active()->withCount('comments')->where('category_id', $post->category_id)->orderBy('comments_count','desc')->take(3)->get();
         $categories_with_posts_count=Category::withCount('posts')->orderBy('posts_count','desc')->get();
         $comments_for_post=Comment::where('post_id',$post->id)->latest()->take(5)->get();
         $comment_for_user=Comment::with('users')->get();

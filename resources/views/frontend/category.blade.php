@@ -1,6 +1,19 @@
 @extends('layouts.frontend.app')
 @section('body')
 <br><br><br>
+
+<!-- Breadcrumb Start -->
+  <div class="breadcrumb-wrap">
+    <div class="container">
+      <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ route('frontend.index') }}">Home</a></li>
+        <li class="breadcrumb-item">Categories</li>
+        <li class="breadcrumb-item active">{{ $category->name }}</li>
+      </ul>
+    </div>
+  </div>
+  <br><br><br>
+  <!-- Breadcrumb End -->
 <!-- Main News Start-->
 <div class="main-news">
   <div class="container">

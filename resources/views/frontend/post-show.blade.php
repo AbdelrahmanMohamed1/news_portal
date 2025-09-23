@@ -7,7 +7,7 @@
       <ul class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('frontend.show', ['slug' => $post->slug]) }}">Home</a></li>
         <li class="breadcrumb-item"><a href="{{ route('frontend.show', ['slug' => $post->slug]) }}">News</a></li>
-        <li class="breadcrumb-item active">News details</li>
+        <li class="breadcrumb-item active">{{ $post->title }}</li>
       </ul>
     </div>
   </div>

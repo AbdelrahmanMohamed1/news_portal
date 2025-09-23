@@ -10,10 +10,16 @@
           </div>
           <div class="col-md-6">
             <div class="tb-menu">
-              <a href="">About</a>
-              <a href="">Privacy</a>
-              <a href="">Terms</a>
-              <a href="">Contact</a>
+              @guest
+              <a href="{{ route('register') }}">Register</a>
+              <a href="{{ route('login') }}">LogIn</a>
+              @endguest
+              @auth
+              <a href="javascript:void(0)" onclick="document.getElementById('formlogout').submit();">LogOut </a>
+              @endauth
+              <form id='formlogout' action="{{ route('logout') }}" method="post">
+                @csrf
+              </form>
             </div>
           </div>
         </div>
@@ -38,10 +44,13 @@
             </div>
           </div>
           <div class="col-lg-3 col-md-4">
-            <div class="b-search">
-              <input type="text" placeholder="Search" />
-              <button><i class="fa fa-search"></i></button>
+            <form action="{{ route('frontend.search') }}" method="post">
+              @csrf
+              <div class="b-search">
+              <input name="search" type="text" placeholder="Search" />
+              <button type="submit"><i class="fa fa-search"></i></button>
             </div>
+            </form>
           </div>
         </div>
       </div>
@@ -86,7 +95,7 @@
                 >Single Page</a
               >
               <a href="dashboard.html" class="nav-item nav-link">Dashboard</a>
-              <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+              <a href="{{ route('frontend.contact') }}" class="nav-item nav-link">Contact Us</a>
             </div>
             <div class="social ml-auto">
               <a href="{{ $get_settings->twitter_url }}" title="twitter"><i class="fab fa-twitter"></i></a>
